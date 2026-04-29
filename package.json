@@ -1,0 +1,96 @@
+{
+  "name": "richlegendai-saas-starter-kit",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Public Next.js SaaS starter kit with Clerk auth, Polar billing, Supabase Postgres, Drizzle ORM, Base UI, TailwindCSS, SEO, GA4, and Vercel deployment guides.",
+  "license": "MIT",
+  "author": "RichLegend AI <richlegendai@gmail.com>",
+  "homepage": "https://github.com/richlegendai/richlegendai-saas-starter-kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richlegendai/richlegendai-saas-starter-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/richlegendai/richlegendai-saas-starter-kit/issues"
+  },
+  "keywords": [
+    "nextjs",
+    "saas",
+    "starter-kit",
+    "clerk",
+    "polar",
+    "supabase",
+    "drizzle",
+    "tailwindcss",
+    "base-ui",
+    "seo",
+    "vercel"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "secret-scan": "node scripts/secret-scan.mjs"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.4.1",
+    "@clerk/nextjs": "^7.2.7",
+    "@next/third-parties": "^16.2.4",
+    "@polar-sh/sdk": "^0.47.1",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.2",
+    "lucide-react": "^0.553.0",
+    "next": "^16.2.4",
+    "next-intl": "^4.5.0",
+    "next-themes": "^0.4.6",
+    "postgres": "^3.4.5",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "svix": "^1.92.2",
+    "tailwind-merge": "^3.3.1",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^16.2.4",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitest/coverage-v8": "^4.1.5",
+    "autoprefixer": "^10.4.21",
+    "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.6",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.2.4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.18",
+    "tailwindcss-animate": "^1.0.7",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@clerk/shared",
+      "@swc/core",
+      "@vercel/speed-insights",
+      "esbuild",
+      "sharp"
+    ]
+  }
+}

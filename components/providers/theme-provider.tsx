@@ -1,0 +1,15 @@
+// Purpose: Theme provider wrapper for light/dark mode support.
+// Owner: template-design
+// Last updated: 2026-04-29
+
+'use client'
+
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <NextThemesProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      {children}
+    </NextThemesProvider>
+  )
+}
