@@ -19,9 +19,9 @@ export function getPageCopy(locale: string) {
         metadataDescription:
           'A public Next.js SaaS starter kit with landing pages, auth, billing, dashboard, admin, SEO, analytics, Supabase, and Vercel deployment docs.',
         eyebrow: 'Next.js + Clerk + Polar + Supabase + Base UI',
-        title: 'Production SaaS starter kit without leaked secrets or vendor lock-in.',
+        title: 'All-in-one SaaS Starter Kit with auth, billing, database, dashboard, SEO, and deployment prep.',
         description:
-          'Start with real SaaS foundations: landing pages, authentication, billing, dashboard, admin, SEO, analytics, deployment docs, and a public-repo checklist.',
+          'Build your SaaS foundation in 30 minutes with landing pages, authentication, billing, dashboard, admin, SEO, analytics, deployment docs, and a public-repo checklist.',
         primaryCta: 'Start template',
         secondaryCta: 'View pricing',
         baseUiTitle: 'Base UI component layer',
@@ -114,9 +114,9 @@ export function getPageCopy(locale: string) {
       metadataDescription:
         '랜딩페이지, 인증, 결제, 대시보드, 어드민, SEO, 분석, Supabase, Vercel 배포 문서를 포함한 공개 RichLegend AI SaaS Starter Kit입니다.',
       eyebrow: 'Next.js + Clerk + Polar + Supabase + Base UI',
-      title: '시크릿 노출 걱정 없이 시작하는 RichLegend AI SaaS Starter Kit',
+      title: '인증부터 결제, DB, 대시보드, SEO, 배포 준비까지 담은 올인원 SaaS Starter Kit',
       description:
-        '랜딩페이지, 인증, 결제, 대시보드, 어드민, SEO, 분석, 배포 문서, 공개 저장소 체크리스트까지 실제 SaaS에 필요한 기반을 한 번에 제공합니다.',
+        '30분 만에 SaaS 기본 구조를 구축할 수 있도록 랜딩페이지, 인증, 결제, 대시보드, 어드민, SEO, 분석, 배포 문서, 공개 저장소 체크리스트까지 한 번에 제공합니다.',
       primaryCta: '템플릿 시작하기',
       secondaryCta: '요금 보기',
       baseUiTitle: 'Base UI 컴포넌트 계층',
