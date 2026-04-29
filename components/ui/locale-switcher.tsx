@@ -4,41 +4,87 @@
 
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils/cn'
+import { ChevronDown } from 'lucide-react'
+import { usePathname, useRouter } from 'next/navigation'
+import type { ChangeEvent } from 'react'
 
-const labels = {
-  ko: '한국어',
-  en: 'English',
+const actualLocales = ['ko', 'en'] as const
+
+const languageOptions = [
+  { value: 'ko', label: '한국어' },
+  { value: 'en', label: 'English' },
+  { value: 'ja', label: '日本語' },
+  { value: 'zh-CN', label: '简体中文' },
+  { value: 'zh-TW', label: '繁體中文' },
+  { value: 'es', label: 'Español' },
+  { value: 'fr', label: 'Français' },
+  { value: 'de', label: 'Deutsch' },
+  { value: 'pt', label: 'Português' },
+  { value: 'it', label: 'Italiano' },
+  { value: 'nl', label: 'Nederlands' },
+  { value: 'pl', label: 'Polski' },
+  { value: 'ru', label: 'Русский' },
+  { value: 'uk', label: 'Українська' },
+  { value: 'ar', label: 'العربية' },
+  { value: 'hi', label: 'हिन्दी' },
+  { value: 'id', label: 'Bahasa Indonesia' },
+  { value: 'ms', label: 'Bahasa Melayu' },
+  { value: 'vi', label: 'Tiếng Việt' },
+  { value: 'th', label: 'ไทย' },
+  { value: 'tr', label: 'Türkçe' },
+  { value: 'sv', label: 'Svenska' },
+  { value: 'da', label: 'Dansk' },
+  { value: 'fi', label: 'Suomi' },
+  { value: 'no', label: 'Norsk' },
+  { value: 'cs', label: 'Čeština' },
+  { value: 'el', label: 'Ελληνικά' },
+  { value: 'he', label: 'עברית' },
+]
+
+type ActualLocale = (typeof actualLocales)[number]
+
+function toActualLocale(locale: string): ActualLocale {
+  return locale === 'ko' ? 'ko' : 'en'
 }
 
 export function LocaleSwitcher({ currentLocale }: { currentLocale: string }) {
   const pathname = usePathname()
+  const router = useRouter()
 
-  function hrefFor(locale: 'ko' | 'en') {
+  function hrefFor(locale: ActualLocale) {
     const segments = pathname.split('/')
-    if (segments[1] === 'ko' || segments[1] === 'en') {
+
+    if (actualLocales.includes(segments[1] as ActualLocale)) {
       segments[1] = locale
       return segments.join('/') || `/${locale}`
     }
+
     return `/${locale}`
   }
 
+  function handleChange(event: ChangeEvent<HTMLSelectElement>) {
+    router.push(hrefFor(toActualLocale(event.target.value)))
+  }
+
   return (
-    <div className="flex rounded-md border bg-background p-1" aria-label="언어 선택">
-      {(['ko', 'en'] as const).map((locale) => (
-        <Link
-          key={locale}
-          href={hrefFor(locale)}
-          className={cn(
-            'rounded px-2 py-1 text-xs font-medium transition hover:bg-muted',
-            currentLocale === locale ? 'bg-primary text-primary-foreground hover:bg-primary' : 'text-muted-foreground',
-          )}
-        >
-          {labels[locale]}
-        </Link>
-      ))}
-    </div>
+    <label className="relative inline-flex h-10 shrink-0 items-center rounded-md border bg-background text-sm text-foreground transition hover:bg-muted">
+      <span className="sr-only">언어 선택</span>
+      <select
+        aria-label="언어 선택"
+        className="h-full appearance-none rounded-md bg-transparent px-3 pr-8 text-sm font-medium outline-none"
+        value={toActualLocale(currentLocale)}
+        onChange={handleChange}
+      >
+        {languageOptions.map((language) => (
+          <option key={language.value} value={language.value}>
+            {language.label}
+          </option>
+        ))}
+      </select>
+      <ChevronDown
+        className="pointer-events-none absolute right-2 h-4 w-4 text-muted-foreground"
+        aria-hidden="true"
+      />
+    </label>
   )
 }
