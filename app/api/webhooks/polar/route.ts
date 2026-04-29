@@ -19,7 +19,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid Polar webhook signature' }, { status: 401 })
   }
 
-  const event = JSON.parse(payload) as { type?: string }
+  let event: { type?: string }
+  try {
+    event = JSON.parse(payload) as { type?: string }
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON payload' }, { status: 400 })
+  }
 
   return NextResponse.json({
     received: true,

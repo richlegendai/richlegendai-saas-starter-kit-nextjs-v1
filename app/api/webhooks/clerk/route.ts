@@ -14,15 +14,20 @@ export async function POST(request: Request) {
 
   const payload = await request.text()
   const headerStore = await headers()
-  const event = verifyClerkWebhookPayload(
-    payload,
-    {
-      'svix-id': headerStore.get('svix-id'),
-      'svix-timestamp': headerStore.get('svix-timestamp'),
-      'svix-signature': headerStore.get('svix-signature'),
-    },
-    process.env.CLERK_WEBHOOK_SECRET,
-  )
+  let event: ReturnType<typeof verifyClerkWebhookPayload>
+  try {
+    event = verifyClerkWebhookPayload(
+      payload,
+      {
+        'svix-id': headerStore.get('svix-id'),
+        'svix-timestamp': headerStore.get('svix-timestamp'),
+        'svix-signature': headerStore.get('svix-signature'),
+      },
+      process.env.CLERK_WEBHOOK_SECRET,
+    )
+  } catch {
+    return NextResponse.json({ error: 'Webhook verification failed' }, { status: 401 })
+  }
 
   if (!isClerkUserCreatedPayload(event)) {
     return NextResponse.json({ received: true, ignored: event.type })

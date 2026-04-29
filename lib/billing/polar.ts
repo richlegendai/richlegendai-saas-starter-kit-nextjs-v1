@@ -11,17 +11,19 @@ export function resolvePolarServer(value = process.env.POLAR_SERVER): PolarServe
   return value === 'sandbox' ? 'sandbox' : 'production'
 }
 
+let cachedPolar: Polar | null = null
+
 export function getPolarClient() {
   if (!process.env.POLAR_ACCESS_TOKEN) {
     throw new Error('POLAR_ACCESS_TOKEN is not configured')
   }
-
-  return new Polar({
-    accessToken: process.env.POLAR_ACCESS_TOKEN,
-    server: resolvePolarServer(),
-  })
+  if (!cachedPolar) {
+    cachedPolar = new Polar({ accessToken: process.env.POLAR_ACCESS_TOKEN, server: resolvePolarServer() })
+  }
+  return cachedPolar
 }
 
+// signature must be a raw 64-char hex string (no "sha256=" prefix).
 export function verifyPolarWebhookSignature(payload: string, signature: string | null, secret: string) {
   if (!signature) {
     return false

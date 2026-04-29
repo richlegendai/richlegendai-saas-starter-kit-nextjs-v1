@@ -2,7 +2,7 @@
 // Owner: template-seo
 // Last updated: 2026-04-29
 
-import { getBaseUrl, siteConfig } from '@/lib/site'
+import { getBaseUrl } from '@/lib/site'
 import { getPageCopy } from '@/lib/i18n/page-copy'
 import type { BlogPost } from '@/lib/content/blog'
 
@@ -17,9 +17,7 @@ export function buildSoftwareApplicationSchema(locale: string) {
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     url: `${baseUrl}/${locale}`,
-    description: locale === 'en'
-      ? 'A public Next.js SaaS starter kit with auth, billing, dashboard, admin, SEO, analytics, Supabase, and Vercel guides.'
-      : siteConfig.description,
+    description: copy.landing.metadataDescription,
     offers: {
       '@type': 'Offer',
       price: '0',

@@ -12,20 +12,12 @@ function hasEnv(name: string) {
   return Boolean(process.env[name]?.trim())
 }
 
-export function requireEnv(names: string[]) {
+type RequireEnvResult = { ok: true } | { ok: false; missing: string[] }
+
+export function requireEnv(names: string[]): RequireEnvResult {
   const missing = names.filter((name) => !hasEnv(name))
-
-  if (missing.length > 0) {
-    return {
-      ok: false as const,
-      missing,
-    }
-  }
-
-  return {
-    ok: true as const,
-    missing: [],
-  }
+  if (missing.length > 0) return { ok: false as const, missing }
+  return { ok: true as const }
 }
 
 export function getIntegrationStatus(): IntegrationStatus[] {

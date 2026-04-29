@@ -2,7 +2,9 @@
 // Owner: template-i18n
 // Last updated: 2026-04-29
 
-export function getPageCopy(locale: string) {
+export type SupportedLocale = 'en' | 'ko'
+
+export function getPageCopy(locale: SupportedLocale | string) {
   if (locale === 'en') {
     return {
       productName: 'RichLegend AI SaaS Starter Kit',
